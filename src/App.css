@@ -1,24 +1,50 @@
 .App {
+  margin: 0 auto;
+  max-width: 600px;
+  padding: 50px 0;
+}
+
+.App-server-sizes {
+  display: flex;
+}
+
+.App-server-size-choice {
+  background-color: rgba(25, 25, 25, 0.5);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  border: 0;
+  text-align: left;
+  margin: 1em;
+  padding: 1em;
+}
+
+.App-server-size-choice-selected {
+  margin: 1em;
+  padding: 1em;
+  background-color: #404451;
+  box-shadow: 0 0 15px rgba(150, 150, 150, 0.5);
+
+  transition: all ease-in-out 500ms;
+}
+
+.App-selections {
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.App-instance-name {
+  font-size: 200%;
+  font-family: monospace;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.App-instance-info {
+  margin: 2em 0;
 }
 
-.App-intro {
-  font-size: large;
+.App-more-links .btn.btn-link {
+  font-size: 13px;
+  color: #9baec8;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.App-or-separator {
+  font-size: 13px;
+  line-height: 16px;
 }

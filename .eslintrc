@@ -19,6 +19,9 @@
     "global-require": 0,
     "semi": ["error", "always"],
     "comma-dangle": ["error", "never"],
-    jsx-quotes: ["error", "prefer-double"]
+    "jsx-quotes": ["error", "prefer-double"],
+    "arrow-body-style": ["error", "always"],
+    "no-console": "warn",
+    "max-len": ["error", 120, 2]
   }
 }

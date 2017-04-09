@@ -3,8 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "classnames": "^2.2.5",
     "react": "^15.5.3",
-    "react-dom": "^15.5.3"
+    "react-bootstrap": "^0.30.8",
+    "react-dom": "^15.5.3",
+    "react-select": "^1.0.0-rc.3"
   },
   "devDependencies": {
     "eslint": "^3.19.0",
