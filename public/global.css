@@ -11,6 +11,10 @@ h1 {
   font-weight: bold;
 }
 
+strong {
+  color: #b8c6db;
+}
+
 .reveal {
   display: none;
 }

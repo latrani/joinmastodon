@@ -108,9 +108,9 @@ class App extends Component {
           <div className={classNames('reveal', { show: this.state.language })}>
             <p>
               We’ve found 34 instances that primarily use {this.state.language.label},
-              with 43567 accounts between them. You’ll be able to talk to all these
-              folks and more regardless of what instance you pick, but it’ll be
-              easier to see content from users on the same instance as you.
+              with 43567 accounts between them. <strong>You’ll be able to talk to all those
+              folks and more regardless of what instance you pick</strong>, but you&apos;ll be in
+              closer contact with users on the same instance as you.
             </p>
             <div className="App-server-sizes">
               <button
