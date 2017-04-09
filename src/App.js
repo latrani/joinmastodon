@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { FormGroup, FormControl, Button } from 'react-bootstrap';
+import { FormGroup, FormControl, Button, InputGroup } from 'react-bootstrap';
 import Select from 'react-select';
 import classNames from 'classnames';
+import { Element, scroller } from 'react-scroll';
+import FontAwesome from 'react-fontawesome';
 
 import 'react-select/dist/react-select.css';
 import './App.css';
@@ -26,18 +28,26 @@ const INSTANCES = {
   }
 };
 
+const SCROLL_OPTIONS = {
+  duration: 1000,
+  delay: 100,
+  smooth: true
+};
+
 class App extends Component {
   constructor () {
     super();
 
     this.state = {
       username: '',
+      usernameChosen: false,
       language: '',
       instanceSize: '',
       selectedInstance: {}
     };
 
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
+    this.handleUsernameSubmit = this.handleUsernameSubmit.bind(this);
     this.handleLanguageChange = this.handleLanguageChange.bind(this);
   }
 
@@ -47,9 +57,30 @@ class App extends Component {
     });
   }
 
+  handleUsernameSubmit (e) {
+    e.preventDefault();
+    if (this.state.username.length > 0) {
+      this.setState({
+        usernameChosen: true
+      }, () => {
+        scroller.scrollTo('usernameScrollAnchor', SCROLL_OPTIONS);
+      });
+    } else {
+      this.setState({
+        usernameChosen: false
+      });
+    }
+  }
+
   handleLanguageChange (option) {
     this.setState({
       language: option
+    }, () => {
+      // There's some weird timing issue with react-select that makes the
+      // scrolling not happen if we try it immediately.
+      setTimeout(() => {
+        scroller.scrollTo('languageScrollAnchor', SCROLL_OPTIONS);
+      }, 0);
     });
   }
 
@@ -58,6 +89,8 @@ class App extends Component {
       this.setState({
         instanceSize: size,
         selectedInstance: INSTANCES[size]
+      }, () => {
+        scroller.scrollTo('sizeScrollAnchor', SCROLL_OPTIONS);
       });
     };
   }
@@ -73,16 +106,31 @@ class App extends Component {
         </p>
         <p>
           But we can start off easy. What username do you want?
+          <Element name="usernameScrollAnchor" />
         </p>
-        <FormGroup>
-          <FormControl
-            type="text"
-            value={this.state.username}
-            onChange={this.handleUsernameChange}
-          />
-        </FormGroup>
+        <form onSubmit={this.handleUsernameSubmit}>
+          <FormGroup>
+            <InputGroup>
+              <FormControl
+                type="text"
+                bsSize="large"
+                value={this.state.username}
+                onChange={this.handleUsernameChange}
+              />
+              <InputGroup.Button>
+                <Button
+                  bsStyle="primary"
+                  bsSize="large"
+                  onClick={this.handleUsernameSubmit}
+                >
+                  <FontAwesome name="arrow-right" />
+                </Button>
+              </InputGroup.Button>
+            </InputGroup>
+          </FormGroup>
+        </form>
 
-        <div className={classNames('reveal', { show: this.state.username })}>
+        <div className={classNames('reveal', { show: this.state.usernameChosen })}>
           <p>
             Great! Now it’s time to pick an instance. This part is a bit more complicated.
             An instance is, basically, the site you go to when you’re using Mastodon.
@@ -96,6 +144,7 @@ class App extends Component {
           </p>
           <p>
             Which of these language are you most comfortable using?
+            <Element name="languageScrollAnchor" />
           </p>
 
           <Select
@@ -112,6 +161,7 @@ class App extends Component {
               folks and more regardless of what instance you pick</strong>, but you&apos;ll be in
               closer contact with users on the same instance as you.
             </p>
+            <Element name="sizeScrollAnchor" />
             <div className="App-server-sizes">
               <button
                 className={classNames(
