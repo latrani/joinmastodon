@@ -188,14 +188,14 @@ class App extends Component {
               <p>Sounds great!</p>
               <div className="App-server-size-choice-selected App-instance-info">
                 <div className="App-instance-name">
-                  <a href="http://{this.state.selectedInstance.name}">
+                  <a href={`https://${this.state.selectedInstance.name}`}>
                     {this.state.selectedInstance.name}
                   </a>
                 </div>
                 <p>is an instance with {this.state.selectedInstance.count} users.</p>
                 <p>
                   The admin of {this.state.selectedInstance.name} is {' '}
-                  <a href="http://{this.state.selectedInstance.name}/{this.state.selectedInstance.owner}">
+                  <a href={`https://${this.state.selectedInstance.name}/${this.state.selectedInstance.owner}`}>
                     {this.state.selectedInstance.owner}
                   </a>,
                   and this is what they have to say about their instance: “We’re a new small instance,
